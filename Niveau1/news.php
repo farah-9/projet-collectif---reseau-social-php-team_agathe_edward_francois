@@ -129,7 +129,10 @@
                         </div>
                         <footer>
                             <small>♥ <?php echo $post['like_number'] ?> </small>
-                            <a href="">#<?php echo $post['taglist'] ?></a>,
+                            <?php $taglist = explode(",", $post['taglist']);
+                            foreach ($taglist as $tag){?>
+                            <a href="">#<?php echo($tag)?></a>
+                            <?php } ?>
                         </footer>
                     </article>
                     <?php
