@@ -52,12 +52,12 @@
                 $lesInformations = $mysqli->query($laQuestionEnSql);
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
-                echo "<pre>" . print_r($user, 1) . "</pre>";
+                // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : XXX
+                    <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo($user['alias'])?>
                         (n° <?php echo $userId ?>)
                     </p>
                 </section>
@@ -68,7 +68,7 @@
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
                 $laQuestionEnSql = "
-                    SELECT posts.content, posts.created, users.alias as author_name, 
+                    SELECT posts.content, posts.created, users.alias as author_name, tags.id as tagId,
                     COUNT(likes.id) as like_number, GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM posts
                     JOIN users ON  users.id=posts.user_id
@@ -76,7 +76,7 @@
                     LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
                     LEFT JOIN likes      ON likes.post_id  = posts.id 
                     WHERE posts.user_id='$userId' 
-                    GROUP BY posts.id
+                    GROUP BY posts.id, tags.id
                     ORDER BY posts.created DESC  
                     ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -105,7 +105,7 @@
                             <small>♥ <?php echo($post['like_number'])?></small>
                             <?php $taglist = explode(",", $post['taglist']);
                             foreach ($taglist as $tag){?>
-                            <a href="">#<?php echo($tag)?></a>
+                            <a href="tags.php?tag_id=<?php echo($post['tagId'])?>">#<?php echo($tag)?></a>
                             <?php } ?>
                         </footer>
                     </article>

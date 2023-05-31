@@ -73,7 +73,9 @@
                 $laQuestionEnSql = "
                     SELECT posts.content,
                     posts.created,
-                    users.alias as author_name,  
+                    users.alias as author_name, 
+                    users.id as id, 
+                    tags.id as tagId,
                     count(likes.id) as like_number,  
                     GROUP_CONCAT(DISTINCT tags.label) AS taglist 
                     FROM followers 
@@ -82,8 +84,8 @@
                     LEFT JOIN posts_tags ON posts.id = posts_tags.post_id  
                     LEFT JOIN tags       ON posts_tags.tag_id  = tags.id 
                     LEFT JOIN likes      ON likes.post_id  = posts.id 
-                    WHERE followers.following_user_id='$userId' 
-                    GROUP BY posts.id
+                    WHERE followers.following_user_id='$userId'
+                    GROUP BY posts.id, tags.id
                     ORDER BY posts.created DESC  
                     ";
                 $lesInformations = $mysqli->query($laQuestionEnSql);
@@ -97,12 +99,13 @@
                  * A vous de retrouver comment faire la boucle while de parcours...
                  */
                 while ($post = $lesInformations->fetch_assoc())
-                {?>                
+                {
+                    // echo "<pre>" . print_r($post, 1) . "</pre>"?>                
                 <article>
                     <h3>
                         <time datetime='2020-02-01 11:12:13' ><?php echo($post['created'])?></time>
                     </h3>
-                    <address><?php echo($post['author_name'])?></address>
+                    <address><a href = "wall.php?user_id=<?php echo($post['id'])?>"><?php echo($post['author_name'])?></a></address>
                     <div>
                         <p><?php echo($post['content'])?></p>
                     </div>                                            
@@ -110,7 +113,7 @@
                         <small>♥ <?php echo($post['like_number'])?></small>
                         <?php $taglist = explode(",", $post['taglist']);
                         foreach ($taglist as $tag){?>
-                        <a href="">#<?php echo($tag)?></a>
+                        <a href="tags.php?tag_id=<?php echo($post['tagId'])?>">#<?php echo($tag)?></a>
                         <?php } ?>
                     </footer>
                 </article>
