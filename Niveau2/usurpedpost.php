@@ -55,7 +55,6 @@ session_start();
                         $listAuteurs[$user['id']] = $user['alias'];
                     }
 
-
                     /**
                      * TRAITEMENT DU FORMULAIRE
                      */
@@ -87,7 +86,6 @@ session_start();
                         //         . "'', "
                         //         . "NULL);"
                         //         ;
-
                             $lInstructionSql = "INSERT INTO posts "
                                 . "(id, user_id, content, created, parent_id) "
                                 . "VALUES (NULL, "
