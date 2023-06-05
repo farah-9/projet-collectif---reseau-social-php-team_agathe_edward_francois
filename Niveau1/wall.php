@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -74,8 +77,7 @@
                     if ($enCoursDeTraitement)
                     {
                         // on ne fait ce qui suit que si un formulaire a été soumis.
-                        // Etape 2: récupérer ce qu'il y a dans le formulaire @todo: c'est là que votre travaille se situe
-                        // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
+                        // Etape 2: récupérer ce qu'il y a dans le formulaire
                         // echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
                         $authorId = $_POST['auteur'];
@@ -87,19 +89,9 @@
                         $authorId = intval($mysqli->real_escape_string($authorId));
                         $postContent = $mysqli->real_escape_string($postContent);
                         //Etape 4 : construction de la requete
-                        // $lInstructionSql = "INSERT INTO posts "
-                        //         . "(id, user_id, content, created, permalink, post_id) "
-                        //         . "VALUES (NULL, "
-                        //         . $authorId . ", "
-                        //         . "'" . $postContent . "', "
-                        //         . "NOW(), "
-                        //         . "'', "
-                        //         . "NULL);"
-                        //         ;
                             $lInstructionSql = "INSERT INTO posts "
-                                . "(id, user_id, content, created, parent_id) "
-                                . "VALUES (NULL, "
-                                . $authorId . ", "
+                                . "(user_id, content, created, parent_id) "
+                                . "VALUES (" . $authorId . ", "
                                 . "'" . $postContent . "', "
                                 . "NOW(), "
                                 . "NULL);"
@@ -112,17 +104,17 @@
                             echo "Impossible d'ajouter le message: " . $mysqli->error;
                         } else
                         {
-                            echo "Message posté en tant que :" . $listAuteurs[$authorId];
+                            echo "Message posté en tant que : " . $user['alias'];
                         }
                     }
                     ?>                     
-                    <form action="usurpedpost.php" method="post">
+                    <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
                         <dl>
-                            <dt><label for='auteur'>Auteur</label></dt> user.author_name / post.user_id
+                            <dt><label for='auteur'>Auteur</label></dt>
                             <dd><select name='auteur'>
-                                <?php  ?>
+                                <?php echo "<option value=" . $_GET['user_id'] . ">" . $user['alias'] . "</option>"; ?>
                             </select></dd>
-                            <dt><label for='message'>Message</label></dt> post.content
+                            <dt><label for='message'>Message</label></dt>
                             <dd><textarea name='message'></textarea></dd>      
                         </dl>
                         <input type='submit'>
