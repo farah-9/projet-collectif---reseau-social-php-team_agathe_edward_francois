@@ -1,5 +1,6 @@
 <?php
-session_start()
+session_start();
+echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
 ?>
 <!doctype html>
 <html lang="fr">

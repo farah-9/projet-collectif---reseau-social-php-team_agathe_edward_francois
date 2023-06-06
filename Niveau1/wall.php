@@ -56,6 +56,7 @@ session_start()
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
+                echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -63,6 +64,39 @@ session_start()
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo($user['alias'])?>
                         (n° <?php echo $userId ?>)
                     </p>
+                    <?php 
+                    $questionSql = "SELECT * FROM followers";
+                    $informations = $mysqli->query($questionSql);
+                    $followers = $informations->fetch_assoc();
+                    echo "<pre>" . print_r($followers, 1) . "</pre>";
+                    
+                    if (isset($_POST['abonnement'])) {
+                        $followedId = $_POST['abonnement'];
+                        $followingId = $_SESSION['connected_id'];
+
+                        if ($followedId !== $followingId) {
+                            $lInstructionSql = "INSERT INTO followers "
+                                . "(followed_user_id, following_user_id) "
+                                . "VALUES ('" . $followedId . "', "
+                                . "'" . $followingId . "'); "
+                                ;
+
+                            $ok = $mysqli->query($lInstructionSql);
+                            if ( ! $ok)
+                            {
+                                echo "Impossible de s'abonner: " . $mysqli->error;
+                            } else
+                            {
+                                echo "Vous êtes maintenant abonné.";
+                            }
+                        }
+                    }
+                    ?>
+                    <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
+                        <dl>
+                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>">S'abonner</button></dd>
+                        </dl>
+                    </form>
                 </section>
             </aside>
             <main>
