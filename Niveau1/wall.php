@@ -65,6 +65,17 @@ session_start()
                         (n° <?php echo $userId ?>)
                     </p>
                     <?php 
+                    function isFollowing ($followed, $following) {
+                        $result = mysql_query("SELECT * FROM followers WHERE followed_user_id = $followed AND following_user_id = $following LIMIT 1");
+                        $num_rows = mysql_num_rows($result);
+
+                        if ($num_rows > 0) {
+                            return true;
+                        }else {
+                            return false;
+                        }
+                    }
+            
                     $questionSql = "SELECT * FROM followers";
                     $informations = $mysqli->query($questionSql);
                     $followers = $informations->fetch_assoc();
@@ -75,6 +86,7 @@ session_start()
                         $followingId = $_SESSION['connected_id'];
 
                         if ($followedId !== $followingId) {
+                            $followText = "S'abonner";
                             $lInstructionSql = "INSERT INTO followers "
                                 . "(followed_user_id, following_user_id) "
                                 . "VALUES ('" . $followedId . "', "
@@ -94,7 +106,7 @@ session_start()
                     ?>
                     <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
                         <dl>
-                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>">S'abonner</button></dd>
+                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>"><?php echo $followText ?></button></dd>
                         </dl>
                     </form>
                 </section>
