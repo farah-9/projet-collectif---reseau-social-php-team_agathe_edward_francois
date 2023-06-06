@@ -1,3 +1,6 @@
+<?php
+session_start()
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -82,6 +85,7 @@
                 // si vous ne la comprenez pas c'est normal, passez, on y reviendra
                 $laQuestionEnSql = "
                     SELECT posts.content,
+                    posts.id as post_number,
                     posts.created,
                     users.alias as author_name,  
                     users.id as id,
@@ -113,7 +117,7 @@
                 {
                     //la ligne ci-dessous doit etre supprimée mais regardez ce 
                     //qu'elle affiche avant pour comprendre comment sont organisées les information dans votre 
-                    // echo "<pre>" . print_r($post, 1) . "</pre>";
+                     echo "<pre>" . print_r($post, 1) . "</pre>";
 
                     // @todo : Votre mission c'est de remplacer les AREMPLACER par les bonnes valeurs
                     // ci-dessous par les bonnes valeurs cachées dans la variable $post 
@@ -130,7 +134,35 @@
                             <p><?php echo $post['content'] ?></p>
                         </div>
                         <footer>
-                            <small>♥ <?php echo $post['like_number'] ?> </small>
+                            <small><?php echo $post['like_number'] ?> </small>
+                            <form action="news.php" method="post">
+                            <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                            <button type="submit" name="like_button">J'aime</button>
+                        </form>
+
+                        <?php
+                            if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['like_button'])) {
+                                // Récupérez l'ID du post à liker depuis le formulaire
+                                $post_id = $_POST['post_id'];
+
+                                // Mettez à jour le nombre de likes dans la base de données
+                                $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+                                if ($mysqli->connect_errno) {
+                                    echo "Échec de la connexion : " . $mysqli->connect_error;
+                                    exit();
+                                }
+
+                                $updateQuery = "INSERT INTO likes (`user_id`, `post_id`) VALUES ('" . $_SESSION['connected_id'] . "', '" . $post['post_number'] . "')";
+                                if ($mysqli->query($updateQuery)) {
+                                    echo "Le post a été liké avec succès.";
+                                } else {
+                                    echo "Une erreur s'est produite lors du like du post : " . $mysqli->error;
+                                }
+
+                                $mysqli->close();
+                            }
+                            ?>
+                            
                             <?php $taglist = explode(",", $post['taglist']);
                             foreach ($taglist as $tag){?>
                             <a href="tags.php?tag_id=<?php echo $post['tagId'] ?>">#<?php echo($tag)?></a>

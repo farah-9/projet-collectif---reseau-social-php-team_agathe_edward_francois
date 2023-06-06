@@ -1,5 +1,5 @@
 <?php
-session_start()
+session_start();
 ?>
 <!doctype html>
 <html lang="fr">
@@ -18,10 +18,6 @@ session_start()
                 <a href="feed.php?user_id=5">Flux</a>
                 <a href="tags.php?tag_id=1">Mots-clés</a>
             </nav>
-            <!-- <button id="logout-button" disabled><a href="login.php?user_id=5">Logout</button> -->
-            <form action="logout.php" method="post">
-    <button type="submit" id="logout-button">Logout</button>
-</form>
             <nav id="user">
                 <a href="#">Profil</a>
                 <ul>
@@ -69,6 +65,17 @@ session_start()
                         (n° <?php echo $userId ?>)
                     </p>
                     <?php 
+                    function isFollowing ($followed, $following) {
+                        $result = mysql_query("SELECT * FROM followers WHERE followed_user_id = $followed AND following_user_id = $following LIMIT 1");
+                        $num_rows = mysql_num_rows($result);
+
+                        if ($num_rows > 0) {
+                            return true;
+                        }else {
+                            return false;
+                        }
+                    }
+            
                     $questionSql = "SELECT * FROM followers";
                     $informations = $mysqli->query($questionSql);
                     $followers = $informations->fetch_assoc();
@@ -79,6 +86,7 @@ session_start()
                         $followingId = $_SESSION['connected_id'];
 
                         if ($followedId !== $followingId) {
+                            $followText = "S'abonner";
                             $lInstructionSql = "INSERT INTO followers "
                                 . "(followed_user_id, following_user_id) "
                                 . "VALUES ('" . $followedId . "', "
@@ -98,7 +106,7 @@ session_start()
                     ?>
                     <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
                         <dl>
-                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>">S'abonner</button></dd>
+                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>"><?php echo $followText ?></button></dd>
                         </dl>
                     </form>
                 </section>
@@ -115,7 +123,8 @@ session_start()
                     if ($enCoursDeTraitement)
                     {
                         // on ne fait ce qui suit que si un formulaire a été soumis.
-                        // Etape 2: récupérer ce qu'il y a dans le formulaire
+                        // Etape 2: récupérer ce qu'il y a dans le formulaire @todo: c'est là que votre travaille se situe
+                        // observez le résultat de cette ligne de débug (vous l'effacerez ensuite)
                         // echo "<pre>" . print_r($_POST, 1) . "</pre>";
                         // et complétez le code ci dessous en remplaçant les ???
                         $authorId = $_POST['auteur'];
@@ -127,9 +136,19 @@ session_start()
                         $authorId = intval($mysqli->real_escape_string($authorId));
                         $postContent = $mysqli->real_escape_string($postContent);
                         //Etape 4 : construction de la requete
+                        // $lInstructionSql = "INSERT INTO posts "
+                        //         . "(id, user_id, content, created, permalink, post_id) "
+                        //         . "VALUES (NULL, "
+                        //         . $authorId . ", "
+                        //         . "'" . $postContent . "', "
+                        //         . "NOW(), "
+                        //         . "'', "
+                        //         . "NULL);"
+                        //         ;
                             $lInstructionSql = "INSERT INTO posts "
-                                . "(user_id, content, created, parent_id) "
-                                . "VALUES (" . $authorId . ", "
+                                . "(id, user_id, content, created, parent_id) "
+                                . "VALUES (NULL, "
+                                . $authorId . ", "
                                 . "'" . $postContent . "', "
                                 . "NOW(), "
                                 . "NULL);"
@@ -142,23 +161,24 @@ session_start()
                             echo "Impossible d'ajouter le message: " . $mysqli->error;
                         } else
                         {
-                            echo "Message posté en tant que : " . $user['alias'];
+                            echo "Message posté en tant que :" . $user["alias"];
                         }
                     }
                     ?>                     
-                    <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
+                    <form action="wall.php?user_id=<?php echo ($_GET["user_id"]) ?>" method="post">
                         <dl>
-                            <dt><label for='auteur'>Auteur</label></dt>
+                            <dt><label for='auteur'>auteur</label></dt> 
                             <dd><select name='auteur'>
-                                <?php echo "<option value=" . $_GET['user_id'] . ">" . $user['alias'] . "</option>"; ?>
+                                <?php echo "<option value=" . $_GET["user_id"] . ">" . $user["alias"] . "</option>" ?>
                             </select></dd>
-                            <dt><label for='message'>Message</label></dt>
+                            <dt><label for='message'>Message</label></dt> 
                             <dd><textarea name='message'></textarea></dd>      
                         </dl>
                         <input type='submit'>
-                    </form>     
+                    </form>   
+                    
                 </article>  
-                <?php
+                    <?php
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
