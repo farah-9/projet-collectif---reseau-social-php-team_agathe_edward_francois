@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -61,39 +64,34 @@
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo($user['alias'])?>
                         (n° <?php echo $userId ?>)
                     </p>
-                    <?php 
-                    $questionSql = "SELECT * FROM followers";
-                    $informations = $mysqli->query($questionSql);
-                    $followers = $informations->fetch_assoc();
-                    echo "<pre>" . print_r($followers, 1) . "</pre>";
+
+                    <?php
+
+                    if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] != $_GET['user_id']) {
+                    // Afficher le formulaire d'abonnement
+                    echo '<form action="wall.php?user_id=" '. $_GET['user_id'] .' "method="post">';
+                    echo '<input type="hidden" name="author_id" value="' . $userId . '">';
+                    echo '<input type="submit" value="S\'abonner">';
+                    echo '</form>';
+                    }
+
+                    if (isset($_SESSION['connected_id']) && isset($_GET['user_id'])) {
+                        // Récupérer l'ID de l'auteur depuis la variable POST
+                        $authorId = $_GET['user_id'];
                     
-                    if (isset($_POST['abonnement'])) {
-                        $followedId = $_POST['abonnement'];
-                        $followingId = $_SESSION['connected_id'];
-
-                        if ($followedId !== $followingId) {
-                            $lInstructionSql = "INSERT INTO followers "
-                                . "(followed_user_id, following_user_id) "
-                                . "VALUES ('" . $followedId . "', "
-                                . "'" . $followingId . "'); "
-                                ;
-
-                            $ok = $mysqli->query($lInstructionSql);
-                            if ( ! $ok)
-                            {
-                                echo "Impossible de s'abonner: " . $mysqli->error;
-                            } else
-                            {
-                                echo "Vous êtes maintenant abonné.";
-                            }
+                        // Effectuer la requête d'insertion de l'abonnement
+                        $followerId = $_SESSION['connected_id'];
+                        $insertQuery = "INSERT INTO followers (followed_user_id, following_user_id) VALUES ('$followerId', '$authorId')";
+                        $insertResult = $mysqli->query($insertQuery);
+                    
+                        // Vérifier si l'abonnement a été ajouté avec succès
+                        if ($insertResult) {
+                            echo "Abonnement ajouté avec succès !";
+                        } else {
+                            echo "Erreur lors de l'ajout de l'abonnement : " . $mysqli->error;
                         }
                     }
                     ?>
-                    <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
-                        <dl>
-                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>">S'abonner</button></dd>
-                        </dl>
-                    </form>
                 </section>
             </aside>
             <main>
@@ -146,23 +144,24 @@
                             echo "Impossible d'ajouter le message: " . $mysqli->error;
                         } else
                         {
-                            echo "Message posté en tant que :" . $listAuteurs[$authorId];
+                            echo "Message posté en tant que :" . $user["alias"];
                         }
                     }
                     ?>                     
-                    <form action="usurpedpost.php" method="post">
+                    <form action="wall.php?user_id=<?php echo ($_GET["user_id"]) ?>" method="post">
                         <dl>
-                            <dt><label for='auteur'>Auteur</label></dt> user.author_name / post.user_id
+                            <dt><label for='auteur'>auteur</label></dt> 
                             <dd><select name='auteur'>
-                                <?php  ?>
+                                <?php echo "<option value=" . $_GET["user_id"] . ">" . $user["alias"] . "</option>" ?>
                             </select></dd>
-                            <dt><label for='message'>Message</label></dt> post.content
+                            <dt><label for='message'>Message</label></dt> 
                             <dd><textarea name='message'></textarea></dd>      
                         </dl>
                         <input type='submit'>
-                    </form>     
+                    </form>   
+                    
                 </article>  
-                <?php
+                    <?php
                 /**
                  * Etape 3: récupérer tous les messages de l'utilisatrice
                  */
