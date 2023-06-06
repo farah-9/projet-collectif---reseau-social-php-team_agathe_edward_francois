@@ -16,6 +16,7 @@
                 <a href="tags.php?tag_id=1">Mots-clés</a>
             </nav>
             <nav id="user">
+                
                 <a href="#">Profil</a>
                 <ul>
                     <li><a href="settings.php?user_id=5">Paramètres</a></li>
