@@ -13,6 +13,7 @@ if (!isset($_SESSION['connected_id'])){
         <title>ReSoC - Mur</title> 
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style copie.css">
     </head>
     <body>
     <?php 

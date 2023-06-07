@@ -1,5 +1,5 @@
 body {
-  background-color: #003;
+  background-color:#A09BE7;
   font-family: Arial;
 }
 
@@ -8,7 +8,8 @@ a {
   color: black;
 }
 a:hover {
-  text-decoration: underline;
+  text-decoration:solid;
+  background-color: #B0FF92;
 }
 
 body > header {
@@ -25,16 +26,16 @@ body > header #menu {
   display: flex;
   width: 50%;
   align-items: stretch;
-  border-left: 1px solid #99b;
+  border-left: 1px solid #B0FF92;
 }
 body > header #menu a {
   flex: 1;
   text-align: center;
   padding-top: 2em;
-  border-right: 1px solid #99b;
+  border-right: 1px solid #B0FF92;
 }
 body > header a:hover {
-  background-color: #99b;
+  background-color: #B0FF92;
 }
 body > header ul {
   list-style: none;
@@ -42,7 +43,7 @@ body > header ul {
 body > header #user {
   margin-left: auto;
   flex: 0.2;
-  border-left: 1px solid #99b;
+  border-left: 1px solid #B0FF92;
 }
 body > header #user > a {
   display: block;
@@ -57,7 +58,7 @@ body > header #user ul {
   margin: 0;
   margin-left: -5em;
   background-color: #fff;
-  border: 1px solid #99b;
+  border: 1px solid #B0FF92;
 
   z-index: 1;
 }
@@ -149,7 +150,7 @@ body > header #user:hover ul {
   text-align: right;
 }
 #wrapper.admin article {
-  border: 1px solid #ddd;
+  border: 1px solid #B0FF92;
   border-radius: 1em;
   padding: 1em;
   margin: 1em;
@@ -186,5 +187,4 @@ body > header #user:hover ul {
 }
 
 pre {
-  color: #aaa;
-}
+  color: #B0FF92;
