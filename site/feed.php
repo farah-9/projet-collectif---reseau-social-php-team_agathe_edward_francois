@@ -1,3 +1,13 @@
+<?php
+session_start();
+var_dump($_SESSION);
+
+if (!isset($_SESSION['connected_id'])){
+    header("Location: login.php");
+    exit();
+}
+?>
+
 <!doctype html>
 <html lang="fr">
     <head>
@@ -17,7 +27,19 @@
             </nav>
             <nav id="user">
                 
-                <a href="#">Profil</a>
+                <!-- <a href="#">Profil</a> -->
+                <?php
+session_start();
+
+if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] === true) {
+// L'utilisateur est connecté, afficher le lien du profil
+    echo '<a href="profile.php">Profil</a>';
+} else {
+// L'utilisateur n'est pas connecté, afficher le lien de connexion
+    echo '<a href="login.php">Connexion</a>';
+}
+?>
+
                 <ul>
                     <li><a href="settings.php?user_id=5">Paramètres</a></li>
                     <li><a href="followers.php?user_id=5">Mes suiveurs</a></li>
