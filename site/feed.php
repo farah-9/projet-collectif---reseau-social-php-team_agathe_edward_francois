@@ -38,7 +38,7 @@ if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] === true) {
     echo '<a href="profile.php">Profil</a>';
 } else {
 // L'utilisateur n'est pas connecté, afficher le lien de connexion
-    echo '<a href="login.php">Connexion</a>';
+    // echo '<a href="login.php">Connexion</a>';
 }
 ?>
 
@@ -82,11 +82,7 @@ if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] === true) {
                 ?>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez tous les message des utilisatrices
-                        auxquel est abonnée l'utilisatrice <?php echo($user['alias'])?>
-                        (n° <?php echo $userId ?>)
-                    </p>
+                    
 
                 </section>
             </aside>
