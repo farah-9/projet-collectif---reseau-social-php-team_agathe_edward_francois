@@ -1,13 +1,9 @@
 <?php
 session_start();
-<<<<<<< HEAD
-=======
-
 if (!isset($_SESSION['connected_id'])){
     header("Location: login.php");
     exit();
 }
->>>>>>> 431fc1cd149a4076f7c0f114cc01bb27de874a18
 ?>
 <!doctype html>
 <html lang="fr">
