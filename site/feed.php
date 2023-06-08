@@ -14,6 +14,7 @@ if (!isset($_SESSION['connected_id'])){
         <title>ReSoC - Flux</title>         
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style copie.css">
     </head>
     <body>
     <?php 
@@ -31,7 +32,6 @@ if (!isset($_SESSION['connected_id'])){
                 
                 <!-- <a href="#">Profil</a> -->
                 <?php
-session_start();
 
 if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] === true) {
 // L'utilisateur est connecté, afficher le lien du profil
@@ -123,8 +123,7 @@ if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] === true) {
                  * Etape 4: @todo Parcourir les messsages et remplir correctement le HTML avec les bonnes valeurs php
                  * A vous de retrouver comment faire la boucle while de parcours...
                  */
-                while ($post = $lesInformations->fetch_assoc())
-                {
+                while ($post = $lesInformations->fetch_assoc()) {
                     // echo "<pre>" . print_r($post, 1) . "</pre>"?>                
                 <article>
                     <h3>

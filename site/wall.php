@@ -66,7 +66,7 @@ if (!isset($_SESSION['connected_id'])){
                 $user = $lesInformations->fetch_assoc();
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
-                echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
+                //echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
                 ?>
                 <img src="https://github.com/adatechschool/projet-collectif---reseau-social-php-team_agathe_edward_francois/blob/master/site/User.png" alt="Portrait de l'utilisatrice"/>
                 <section>
@@ -76,49 +76,66 @@ if (!isset($_SESSION['connected_id'])){
                     </p>
                     <?php 
                     function isFollowing ($followed, $following) {
-                        $result = mysql_query("SELECT * FROM followers WHERE followed_user_id = $followed AND following_user_id = $following LIMIT 1");
-                        $num_rows = mysql_num_rows($result);
-
+                        $mysqli = new mysqli("localhost", "root", "root", "socialnetwork");
+                        $result = $mysqli->query("SELECT * FROM followers WHERE followed_user_id = $followed AND following_user_id = $following");
+                        $num_rows = mysqli_num_rows($result);
                         if ($num_rows > 0) {
                             return true;
-                        }else {
+                        } else {
                             return false;
                         }
                     }
-            
+
                     $questionSql = "SELECT * FROM followers";
                     $informations = $mysqli->query($questionSql);
                     $followers = $informations->fetch_assoc();
-                    echo "<pre>" . print_r($followers, 1) . "</pre>";
+                    $followingId = intval($_SESSION['connected_id']);
+                    $followedId = intval($_GET['user_id']);
                     
-                    if (isset($_POST['abonnement'])) {
-                        $followedId = $_POST['abonnement'];
-                        $followingId = $_SESSION['connected_id'];
+                    if ($followedId !== $followingId && ! isFollowing($followedId, $followingId)) {?>
+                        <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
+                            <dl>
+                                <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>">S'abonner</button></dd>
+                            </dl>
+                        </form>
+                        <?php
+                        if (isset($_POST['abonnement'])) {
+                        $followedId = intval($_POST['abonnement']);
+                        $lInstructionSql = "INSERT INTO followers "
+                            . "(followed_user_id, following_user_id) "
+                            . "VALUES ('" . $followedId . "', "
+                            . "'" . $followingId . "'); "
+                            ;
 
-                        if ($followedId !== $followingId) {
-                            $followText = "S'abonner";
-                            $lInstructionSql = "INSERT INTO followers "
-                                . "(followed_user_id, following_user_id) "
-                                . "VALUES ('" . $followedId . "', "
-                                . "'" . $followingId . "'); "
-                                ;
-
-                            $ok = $mysqli->query($lInstructionSql);
-                            if ( ! $ok)
-                            {
-                                echo "Impossible de s'abonner: " . $mysqli->error;
-                            } else
-                            {
-                                echo "Vous êtes maintenant abonné.";
-                            }
+                        $ok = $mysqli->query($lInstructionSql);
+                        if ( ! $ok) {
+                            echo "Impossible de s'abonner: " . $mysqli->error;
+                        } else {
+                            echo "Vous êtes maintenant abonné.";
                         }
                     }
-                    ?>
+                } elseif ($followedId !== $followingId && isFollowing($followedId, $followingId)) {?>
                     <form action="wall.php?user_id=<?php echo ($_GET['user_id']) ?>" method="post">
                         <dl>
-                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>"><?php echo $followText ?></button></dd>
+                            <dd><button type="submit" name="abonnement", value="<?php echo ($_GET['user_id']) ?>">Se désabonner</button></dd>
                         </dl>
                     </form>
+                    <?php
+                    if (isset($_POST['abonnement'])) {
+                        $followedId = intval($_POST['abonnement']);
+                        $lInstructionSql = "DELETE FROM followers WHERE "
+                            . "followed_user_id = " . $followedId . " AND following_user_id = " . $followingId . "; "
+                            ;
+
+                        $ok = $mysqli->query($lInstructionSql);
+                        if ( ! $ok) {
+                            echo "Impossible de se désabonner: " . $mysqli->error;
+                        } else {
+                            echo "Vous êtes maintenant désabonné.";
+                        }
+                    }
+                }
+                ?>
                 </section>
             </aside>
             <main>
