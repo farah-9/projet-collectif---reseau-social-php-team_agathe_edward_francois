@@ -80,7 +80,7 @@ if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] === true) {
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par l'alias et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="User1.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
                     
 
