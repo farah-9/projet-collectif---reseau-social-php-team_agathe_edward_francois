@@ -53,7 +53,7 @@ if (!isset($_SESSION['connected_id'])){
                 while ($user = $lesInformations->fetch_assoc())
                 {?>
                 <article>
-                    <img src="User1.jpg" alt="blason"/>
+                    <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
                     <h3><a href = "wall.php?user_id=<?php echo($user['id'])?>"><?php echo($user['alias'])?></a></h3>
                     <p>id: <?php echo($user['id'])?></p>                    
                 </article>

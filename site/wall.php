@@ -68,7 +68,7 @@ if (!isset($_SESSION['connected_id'])){
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 //echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
                 ?>
-                                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                                <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
 
                 <section>
                     

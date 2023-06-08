@@ -37,7 +37,7 @@ if (!isset($_SESSION['connected_id'])){
         </header> -->
         <div id="wrapper">
             <aside>
-                <img src="User1.jpg" alt="Portrait de l'utilisatrice"/>
+            <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
                 <section>
                     
                 </section>
