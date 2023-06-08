@@ -7,7 +7,7 @@
                 <a href="tags.php?tag_id=1">Mots-clés</a>
             </nav>
             <!-- <button id="logout-button" disabled><a href="login.php?user_id=5">Logout</button> -->
-            <form action="User.png" method="post">
+            <form action="User1.png" method="post">
             <button type="submit" id="logout-button">Logout</button>
 </form>
             <nav id="user">

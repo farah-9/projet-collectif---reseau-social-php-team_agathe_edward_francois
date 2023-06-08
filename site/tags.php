@@ -67,7 +67,7 @@ if (!isset($_SESSION['connected_id'])){
                 //@todo: afficher le résultat de la ligne ci dessous, remplacer XXX par le label et effacer la ligne ci-dessous
                 // echo "<pre>" . print_r($tag, 1) . "</pre>";
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez les derniers messages comportant
