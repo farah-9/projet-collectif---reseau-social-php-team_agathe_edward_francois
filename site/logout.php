@@ -12,6 +12,7 @@ exit;
         <title>ReSoC - Connexion</title> 
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style copie.css">
     </head>
 <body>
     <?php include_once 'header.php';?>

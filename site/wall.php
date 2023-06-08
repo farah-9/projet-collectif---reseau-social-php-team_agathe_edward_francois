@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if (!isset($_SESSION['connected_id'])){
+    header("Location: login.php");
+    exit();
+}
 ?>
 <!doctype html>
 <html lang="fr">
@@ -8,6 +13,7 @@ session_start();
         <title>ReSoC - Mur</title> 
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style copie.css">
     </head>
     <body>
     <?php 

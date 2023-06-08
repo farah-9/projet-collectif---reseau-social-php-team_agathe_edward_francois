@@ -1,5 +1,13 @@
 <?php
 session_start();
+<<<<<<< HEAD
+=======
+
+if (!isset($_SESSION['connected_id'])){
+    header("Location: login.php");
+    exit();
+}
+>>>>>>> 431fc1cd149a4076f7c0f114cc01bb27de874a18
 ?>
 <!doctype html>
 <html lang="fr">
@@ -8,9 +16,13 @@ session_start();
         <title>ReSoC - Actualités</title> 
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style copie.css">
     </head>
     <body>
-        <header>
+    <?php 
+        include_once 'header.php';
+        ?>
+        <!-- <header>
             <a href='admin.php'><img src="resoc.jpg" alt="Logo de notre réseau social"/></a>
             <nav id="menu">
                 <a href="news.php">Actualités</a>
@@ -26,7 +38,7 @@ session_start();
                     <li><a href="subscriptions.php?user_id=5">Mes abonnements</a></li>
                 </ul>
             </nav>
-        </header>
+        </header> -->
         <div id="wrapper">
             <aside>
                 <img src="user.jpg" alt="Portrait de l'utilisatrice"/>

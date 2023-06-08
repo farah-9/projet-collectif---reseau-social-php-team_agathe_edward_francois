@@ -8,6 +8,7 @@ session_start();
         <title>ReSoC - Post d'usurpateur</title> 
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style copie.css">
     </head>
     <body>
         <header>

@@ -1,3 +1,11 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['connected_id'])){
+    header("Location: login.php");
+    exit();
+}
+?>
 <!doctype html>
 <html lang="fr">
     <head>
@@ -5,9 +13,14 @@
         <title>ReSoC - Les message par mot-clé</title> 
         <meta name="author" content="Julien Falconnet">
         <link rel="stylesheet" href="style.css"/>
+        <link rel="stylesheet" href="style copie.css">
     </head>
     <body>
-        <header>
+        
+    <?php 
+        include_once 'header.php';
+        ?>
+        <!-- <header>
             <img src="resoc.jpg" alt="Logo de notre réseau social"/>
             <nav id="menu">
                 <a href="news.php">Actualités</a>
@@ -24,7 +37,7 @@
                 </ul>
 
             </nav>
-        </header>
+        </header> -->
         <div id="wrapper">
             <?php
             /**
