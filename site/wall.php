@@ -68,7 +68,7 @@ if (!isset($_SESSION['connected_id'])){
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
                 ?>
-                <img src="user.jpg" alt="Portrait de l'utilisatrice"/>
+                <img src="https://github.com/adatechschool/projet-collectif---reseau-social-php-team_agathe_edward_francois/blob/master/site/User.png" alt="Portrait de l'utilisatrice"/>
                 <section>
                     <h3>Présentation</h3>
                     <p>Sur cette page vous trouverez tous les message de l'utilisatrice : <?php echo($user['alias'])?>
