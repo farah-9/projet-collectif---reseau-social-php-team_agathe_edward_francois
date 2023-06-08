@@ -8,7 +8,7 @@
             </nav>
             <!-- <button id="logout-button" disabled><a href="login.php?user_id=5">Logout</button> -->
             <form action="User.png" method="post">
-            <button type="submit" id="logout-button">Logout</button>
+            <!-- <button type="submit" id="logout-button">Logout</button> -->
 </form>
             <nav id="user">
                 <a href="#">Profil</a>
