@@ -190,3 +190,8 @@ pre {
   color: #B0FF92;
 }
 
+#nom aside p{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

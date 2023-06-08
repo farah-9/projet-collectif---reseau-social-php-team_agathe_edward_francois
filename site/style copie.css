@@ -205,3 +205,7 @@ form dl dd textarea {
   height: 15em;
 }
 
+#nom aside p {
+  text-transform: uppercase;
+  text-align: center;
+}

@@ -68,8 +68,11 @@ if (!isset($_SESSION['connected_id'])){
                 // echo "<pre>" . print_r($user, 1) . "</pre>";
                 //echo "<pre>" . print_r($_SESSION, 1) . "</pre>";
                 ?>
-                                <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
-
+                <div style="display: flex; flex-direction: column; align-items: center;">
+                <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
+                <p id="nom" style="text-align: center; text-transform: uppercase; font-weight: bold;"><?php echo $user['alias'];?></p>
+  
+                </div>
                 <section>
                     
                     
