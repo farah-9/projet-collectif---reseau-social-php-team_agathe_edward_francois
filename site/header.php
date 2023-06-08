@@ -7,8 +7,13 @@
                 <a href="tags.php?tag_id=1">Mots-clés</a>
             </nav>
             <!-- <button id="logout-button" disabled><a href="login.php?user_id=5">Logout</button> -->
+<<<<<<< HEAD
             <form img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
             <button type="submit" id="logout-button">Logout</button>
+=======
+            <form action="User.png" method="post">
+            <!-- <button type="submit" id="logout-button">Logout</button> -->
+>>>>>>> 1f6f01b18a31aaf5bf83c0931e31082b828559cb
 </form>
             <nav id="user">
                 <a href="#">Profil</a>

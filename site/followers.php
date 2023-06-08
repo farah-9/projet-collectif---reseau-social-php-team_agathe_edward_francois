@@ -39,10 +39,7 @@ if (!isset($_SESSION['connected_id'])){
             <aside>
                 <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez la liste des personnes qui
-                        suivent les messages de l'utilisatrice
-                        n° <?php echo intval($_GET['user_id']) ?></p>
+                    
 
                 </section>
             </aside>
