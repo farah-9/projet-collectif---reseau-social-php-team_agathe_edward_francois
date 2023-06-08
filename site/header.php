@@ -22,7 +22,7 @@
                 </ul>
             </nav>
         </header>
-        <video  autoplay muted loop >
+        <video  autoplay muted loop> 
         <source src="banner.mp4" type="video/mp4">
         Votre navigateur ne prend pas en charge la lecture de vidéos HTML5.
         </video>
