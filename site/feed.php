@@ -1,6 +1,5 @@
 <?php
 session_start();
-var_dump($_SESSION);
 
 if (!isset($_SESSION['connected_id'])){
     header("Location: login.php");
@@ -135,7 +134,11 @@ if (isset($_SESSION['connected_id']) && $_SESSION['connected_id'] === true) {
                         <p><?php echo($post['content'])?></p>
                     </div>                                            
                     <footer>
-                        <small>♥ <?php echo($post['like_number'])?></small>
+                        <small>♡<?php echo $post['like_number'] ?> </small>
+                        <form action="news.php" method="post">
+                            <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                            <button type="submit" name="like_button">J'aime</button>
+                        </form>
                         <?php $taglist = explode(",", $post['taglist']);
                         foreach ($taglist as $tag){?>
                         <a href="tags.php?tag_id=<?php echo($post['tagId'])?>">#<?php echo($tag)?></a>
