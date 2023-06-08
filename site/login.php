@@ -17,8 +17,8 @@ session_start();
         <div id="wrapper" >
 
             <aside>
-                <h2>Présentation</h2>
-                <p>Bienvenu sur notre réseau social.</p>
+                <h1>Bienvenu sur notre réseau social.</h1>
+            
             </aside>
             <main>
                 <article>
