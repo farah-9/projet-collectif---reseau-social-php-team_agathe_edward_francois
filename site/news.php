@@ -165,7 +165,7 @@ if (!isset($_SESSION['connected_id'])){
                         <footer>
                             <small>♡<?php echo $post['like_number'] ?> </small>
                             <form action="news.php" method="post">
-                            <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                            <input type="hidden" name="post_id" value="<?php echo $post['post_number']; ?>">
                             <button type="submit" name="like_button">J'aime</button>
                         </form>
                                     
