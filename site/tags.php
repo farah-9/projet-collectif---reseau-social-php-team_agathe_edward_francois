@@ -69,11 +69,7 @@ if (!isset($_SESSION['connected_id'])){
                 ?>
                 <img src="User1.jpg" alt="Portrait de l'utilisatrice" style="border-radius: 50%;">
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages comportant
-                        le mot-clé <?php echo($tag['label'])?>
-                        (n° <?php echo $tagId ?>)
-                    </p>
+                    
 
                 </section>
             </aside>
@@ -122,7 +118,11 @@ if (!isset($_SESSION['connected_id'])){
                             <p><?php echo($post['content'])?></p>
                         </div>                                            
                         <footer>
-                            <small>♥ <?php echo($post['like_number'])?></small>
+                            <small>♡<?php echo $post['like_number'] ?> </small>
+                            <form action="news.php" method="post">
+                                <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                                <button type="submit" name="like_button">J'aime</button>
+                            </form>
                             <?php $taglist = explode(",", $post['taglist']);
                             foreach ($taglist as $tag){?>
                             <a href="">#<?php echo($tag)?></a>

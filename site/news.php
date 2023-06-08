@@ -39,9 +39,7 @@ if (!isset($_SESSION['connected_id'])){
             <aside>
                 <img src="User1.jpg" alt="Portrait de l'utilisatrice"/>
                 <section>
-                    <h3>Présentation</h3>
-                    <p>Sur cette page vous trouverez les derniers messages de
-                        tous les utilisatrices du site.</p>
+                    
                 </section>
             </aside>
             <main>
@@ -165,7 +163,7 @@ if (!isset($_SESSION['connected_id'])){
                         <footer>
                             <small>♡<?php echo $post['like_number'] ?> </small>
                             <form action="news.php" method="post">
-                            <input type="hidden" name="post_id" value="<?php echo $post['id']; ?>">
+                            <input type="hidden" name="post_id" value="<?php echo $post['post_number']; ?>">
                             <button type="submit" name="like_button">J'aime</button>
                         </form>
                                     
