@@ -21,30 +21,40 @@ Le réseau social offrira également des fonctionnalités telles que la messager
 
 #Avantages
 
-. # Interaction sociale : Le réseau social permet aux utilisateurs de se connecter et d'interagir avec d'autres personnes, ce qui favorise les relations et la création de communautés en ligne.
+ # Interaction sociale :
+Le réseau social permet aux utilisateurs de se connecter et d'interagir avec d'autres personnes, ce qui favorise les relations et la création de communautés en ligne.
 
-. # Partage de contenu : Les utilisateurs peuvent partager du contenu varié, tels que des textes, des images et des vidéos, ce qui permet de s'exprimer, de partager des intérêts communs et de découvrir de nouvelles idées.
+ # Partage de contenu : 
+Les utilisateurs peuvent partager du contenu varié, tels que des textes, des images et des vidéos, ce qui permet de s'exprimer, de partager des intérêts communs et de découvrir de nouvelles idées.
 
-. # Communication instantanée : Le système de messagerie permet aux utilisateurs de communiquer directement et en temps réel, favorisant ainsi les échanges rapides et la coordination entre les membres.
+ # Communication instantanée :
+ Le système de messagerie permet aux utilisateurs de communiquer directement et en temps réel, favorisant ainsi les échanges rapides et la coordination entre les membres.
 
-. # Notifications en temps réel :  Les utilisateurs sont informés en temps réel des activités et des interactions importantes, ce qui facilite l'engagement et la participation active sur la plateforme.
+ # Notifications en temps réel :  
+ Les utilisateurs sont informés en temps réel des activités et des interactions importantes, ce qui facilite l'engagement et la participation active sur la plateforme.
 
-. # Contrôle de la confidentialité : Les paramètres de confidentialité donnent aux utilisateurs le contrôle sur la visibilité de leur contenu, ce qui permet de gérer leur vie privée et de partager des informations uniquement avec les personnes souhaitées.
+ # Contrôle de la confidentialité : 
+ Les paramètres de confidentialité donnent aux utilisateurs le contrôle sur la visibilité de leur contenu, ce qui permet de gérer leur vie privée et de partager des informations uniquement avec les personnes souhaitées.
 
 # Contraintes rencontrées
 
-. # Sécurité : Les réseaux sociaux nécessitent une attention particulière en matière de sécurité pour protéger les données des utilisateurs, éviter les attaques et les abus, et garantir la confidentialité des informations personnelles.
+ # Sécurité : 
+ Les réseaux sociaux nécessitent une attention particulière en matière de sécurité pour protéger les données des utilisateurs, éviter les attaques et les abus, et garantir la confidentialité des informations personnelles.
 
-. # Évolutivité : La gestion de grandes quantités de données et d'utilisateurs peut devenir un défi, il est donc important de concevoir une architecture robuste qui puisse évoluer avec la croissance de la plateforme.
+ # Évolutivité : 
+ La gestion de grandes quantités de données et d'utilisateurs peut devenir un défi, il est donc important de concevoir une architecture robuste qui puisse évoluer avec la croissance de la plateforme.
 
-. # Interface utilisateur intuitive : Un réseau social doit offrir une interface utilisateur conviviale et intuitive pour faciliter l'adoption et l'utilisation par les utilisateurs. L'expérience utilisateur doit être prise en compte lors de la conception et du développement de l'application.
+ # Interface utilisateur intuitive : 
+Un réseau social doit offrir une interface utilisateur conviviale et intuitive pour faciliter l'adoption et l'utilisation par les utilisateurs. L'expérience utilisateur doit être prise en compte lors de la conception et du développement de l'application.
+
 
 # CE PROJET A DURÉ DEUX(2) SEMAINES, DONC AVEC UN EXCELLENT TRAVAIL D'ÉQUIPE ET UNE BONNE GESTION DU TEMPS, ON A RÉUSSI À ABOUTIR À UN BON RENDU DU PROJET MAIS AURIONS AIMÉ QUAND MÊME RAJOUTER CERTAINE FONCTIONALITÉS DE MISES À JOUR ET DE MAINTENANCE POUR LA RESOLUTION DE BOGUES, APPLIQUER DES CORRECTIFS DE SÉCURITÉ ET AMÉLIORER LES FONCTIONALITÉS EXISTANTES SI NOUS AVIONS EU UN PEU PLUS DE TEMPS.
 
-. # Technologies utilisées :
 
-• # PHP
-. # MySQL
+# Technologies utilisées :
+
+ # PHP
+ # MySQL
 
 
 
