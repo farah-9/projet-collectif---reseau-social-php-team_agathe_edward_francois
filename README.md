@@ -5,7 +5,7 @@ Projet Réseau Social en PHP
 ![Capture d’écran 2023-07-25 à 14 17 19](https://github.com/farah-9/projet-collectif---reseau-social-php-team_agathe_edward_francois/assets/119256395/f80d9f17-0a3e-441f-9514-3f7037ad4ddc)
 
 
-# Descrikption
+# Description
 
 Ce projet vise à créer un réseau social en utilisant le langage de programmation PHP. 
 L'objectif principal est de permettre aux utilisateurs de s'inscrire, de se connecter, de partager du contenu, d'interagir avec d'autres utilisateurs et de créer des liens sociaux. 
